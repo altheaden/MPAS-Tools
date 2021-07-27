@@ -3,13 +3,13 @@ from __future__ import absolute_import, division, print_function, \
 
 import numpy
 import jigsawpy
-from jigsawpy.savejig import savejig
+import os
 
 from mpas_tools.logging import check_call
 
 
 def jigsaw_driver(cellWidth, x, y, on_sphere=True, earth_radius=6371.0e3,
-                  geom_points=None, geom_edges=None, logger=None):
+                  geom_points=None, geom_edges=None, logger=None, dir='./'):
     """
     A function for building a jigsaw mesh
 
@@ -36,6 +36,10 @@ def jigsaw_driver(cellWidth, x, y, on_sphere=True, earth_radius=6371.0e3,
 
     logger : logging.Logger, optional
         A logger for the output if not stdout
+
+    dir : str, optional
+        A directory in which temporary files produced during mesh conversion
+        are placed, task-local directory must be defined for parallel tasks
     """
     # Authors
     # -------
@@ -43,10 +47,10 @@ def jigsaw_driver(cellWidth, x, y, on_sphere=True, earth_radius=6371.0e3,
 
     # setup files for JIGSAW
     opts = jigsawpy.jigsaw_jig_t()
-    opts.geom_file = 'mesh.msh'
-    opts.jcfg_file = 'mesh.jig'
-    opts.mesh_file = 'mesh-MESH.msh'
-    opts.hfun_file = 'mesh-HFUN.msh'
+    opts.geom_file = os.path.join(dir, 'geom.msh')
+    opts.jcfg_file = os.path.join(dir, 'opts.jig')
+    opts.mesh_file = os.path.join(dir, 'mesh.msh')
+    opts.hfun_file = os.path.join(dir, 'hfun.msh')
 
     # save HFUN data to file
     hmat = jigsawpy.jigsaw_msh_t()
@@ -80,5 +84,5 @@ def jigsaw_driver(cellWidth, x, y, on_sphere=True, earth_radius=6371.0e3,
     opts.optm_qlim = 0.9375
     opts.verbosity = +1
 
-    savejig(opts.jcfg_file, opts)
+    jigsawpy.savejig(opts.jcfg_file, opts)
     check_call(['jigsaw', opts.jcfg_file], logger=logger)

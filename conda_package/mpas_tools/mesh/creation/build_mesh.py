@@ -5,6 +5,7 @@ import xarray
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy
+import os
 
 from mpas_tools.mesh.conversion import convert
 from mpas_tools.io import write_netcdf
@@ -23,8 +24,8 @@ def build_spherical_mesh(cellWidth, lon, lat, earth_radius,
     latitude and longitude.
 
     The result is a mesh file stored in ``out_filename`` as well as several
-    intermediate files: ``mesh.log``, ``mesh-HFUN.msh``, ``mesh.jig``,
-    ``mesh-MESH.msh``, ``mesh.msh``, and ``mesh_triangles.nc``.
+    intermediate files: ``mesh.log``, ``hfun.msh``, ``opts.jig``,
+    ``geom.msh``, ``mesh.msh``, and ``mesh_triangles.nc``.
 
     Parameters
     ----------
@@ -48,8 +49,8 @@ def build_spherical_mesh(cellWidth, lon, lat, earth_radius,
         to ``cellWidthGlobal.png``.
 
     dir : str, optional
-        A directory in which a temporary directory will be added with files
-        produced during mesh conversion and then deleted upon completion.
+        A directory in which temporary files produced during mesh conversion
+        are placed, task-local directory must be defined for parallel tasks
 
     logger : logging.Logger, optional
         A logger for the output if not stdout
@@ -61,7 +62,7 @@ def build_spherical_mesh(cellWidth, lon, lat, earth_radius,
                               dims=['lat', 'lon'],
                               coords={'lat': lat, 'lon': lon},
                               name='cellWidth')
-        cw_filename = 'cellWidthVsLatLon.nc'
+        cw_filename = os.path.join(dir, 'cellWidthVsLatLon.nc')
         da.to_netcdf(cw_filename)
         if plot_cellWidth:
             register_sci_viz_colormaps()
@@ -88,26 +89,27 @@ def build_spherical_mesh(cellWidth, lon, lat, earth_radius,
             plt.colorbar(im, shrink=.60)
             fig.canvas.draw()
             plt.tight_layout()
-            plt.savefig('cellWidthGlobal.png', bbox_inches='tight')
+            plt.savefig(os.path.join(dir, 'cellWidthGlobal.png'),
+                        bbox_inches='tight')
             plt.close()
 
         logger.info('Step 1. Generate mesh with JIGSAW')
         jigsaw_driver(cellWidth, lon, lat, on_sphere=True,
-                      earth_radius=earth_radius, logger=logger)
+                      earth_radius=earth_radius, logger=logger, dir=dir)
 
         logger.info('Step 2. Convert triangles from jigsaw format to netcdf')
-        jigsaw_to_netcdf(msh_filename='mesh-MESH.msh',
-                         output_name='mesh_triangles.nc', on_sphere=True,
-                         sphere_radius=earth_radius)
+        jigsaw_to_netcdf(msh_filename=os.path.join(dir, 'mesh.msh'),
+                         output_name=os.path.join(dir, 'mesh_triangles.nc'),
+                         on_sphere=True, sphere_radius=earth_radius)
 
         logger.info('Step 3. Convert from triangles to MPAS mesh')
-        write_netcdf(convert(xarray.open_dataset('mesh_triangles.nc'), dir=dir,
-                             logger=logger),
-                     out_filename)
+        write_netcdf(convert(
+            xarray.open_dataset(os.path.join(dir, 'mesh_triangles.nc')),
+            dir=dir, logger=logger), out_filename)
 
 
 def build_planar_mesh(cellWidth, x, y, geom_points, geom_edges,
-                      out_filename='base_mesh.nc', logger=None):
+                      out_filename='base_mesh.nc', dir='./', logger=None):
     """
     Build a planar MPAS mesh
 
@@ -129,6 +131,10 @@ def build_planar_mesh(cellWidth, x, y, geom_points, geom_edges,
     out_filename : str, optional
         The file name of the resulting MPAS mesh
 
+    dir : str, optional
+        A directory in which temporary files produced during mesh conversion
+        are placed, task-local directory must be defined for parallel tasks
+
     logger : logging.Logger, optional
         A logger for the output if not stdout
     """
@@ -139,20 +145,21 @@ def build_planar_mesh(cellWidth, x, y, geom_points, geom_edges,
                               dims=['y', 'x'],
                               coords={'y': y, 'x': x},
                               name='cellWidth')
-        cw_filename = 'cellWidthVsXY.nc'
+        cw_filename = os.path.join(dir, 'cellWidthVsXY.nc')
         da.to_netcdf(cw_filename)
 
         logger.info('Step 1. Generate mesh with JIGSAW')
         jigsaw_driver(cellWidth, x, y, on_sphere=False,
                       geom_points=geom_points, geom_edges=geom_edges,
-                      logger=logger)
+                      logger=logger, dir=dir)
 
         logger.info('Step 2. Convert triangles from jigsaw format to netcdf')
-        jigsaw_to_netcdf(msh_filename='mesh-MESH.msh',
-                         output_name='mesh_triangles.nc', on_sphere=False)
+        jigsaw_to_netcdf(msh_filename=os.path.join(dir, 'mesh.msh'),
+                         output_name=os.path.join(dir, 'mesh_triangles.nc'),
+                         on_sphere=False)
 
         logger.info('Step 3. Convert from triangles to MPAS mesh')
-        write_netcdf(convert(xarray.open_dataset('mesh_triangles.nc'),
-                             logger=logger),
-                     out_filename)
+        write_netcdf(convert(
+            xarray.open_dataset(os.path.join(dir, 'mesh_triangles.nc')),
+            dir=dir, logger=logger), out_filename)
 
