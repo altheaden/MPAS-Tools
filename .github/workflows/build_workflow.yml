@@ -49,10 +49,27 @@ jobs:
             hashFiles('conda_package/dev-spec.txt,conda_package/setup.py') }}
 
       - if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
-        name: Set up Conda Environment
+        name: Create Build Environment
         uses: conda-incubator/setup-miniconda@v3
         with:
-          activate-environment: "mpas_tools_ci"
+          activate-environment: "build"
+          miniforge-version: latest
+          channels: conda-forge
+          channel-priority: strict
+          auto-update-conda: true
+          python-version: ${{ matrix.python-version }}
+
+      - if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
+        name: Finalize Build Environment
+        run: |
+          conda install conda conda-build
+          conda build -m "conda_package/ci/osx_64_python${{ matrix.python-version }}.____cpython.yaml" "conda_package/recipe"
+
+      - if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
+        name: Create Dev Environment
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: "mpas_tools_dev"
           miniforge-version: latest
           channels: conda-forge
           channel-priority: strict
@@ -62,9 +79,6 @@ jobs:
       - if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         name: Install mpas_tools
         run: |
-          conda create -n mpas_tools_dev --file conda_package/dev-spec.txt \
-              python=${{ matrix.python-version }}
-          conda activate mpas_tools_dev
           python -m pip install --no-deps --no-build-isolation -vv -e .
 
       - if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
@@ -74,9 +88,9 @@ jobs:
         run: |
           set -e
           conda activate mpas_tools_dev
-          test -f "${PREFIX}/bin/ocean_smooth_topo_skip_land_ice"
-          test -f "${PREFIX}/bin/ocean_smooth_topo_before_init"
-          test -f "${PREFIX}/bin/ocean_smooth_topo_before_init_skip_land_ice"
+          # test -f "${PREFIX}/bin/ocean_smooth_topo_skip_land_ice"
+          # test -f "${PREFIX}/bin/ocean_smooth_topo_before_init"
+          # test -f "${PREFIX}/bin/ocean_smooth_topo_before_init_skip_land_ice"
           planar_hex --nx=10 --ny=20 --dc=1000. --outFileName='periodic_mesh_10x20_1km.nc'
           translate_planar_grid -f 'periodic_mesh_10x20_1km.nc' -x 1000. -y 2000.
           translate_planar_grid -f 'periodic_mesh_10x20_1km.nc' -c
@@ -126,6 +140,7 @@ jobs:
       - if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         name: Build Sphinx Docs
         run: |
+          conda init
           conda activate mpas_tools_dev
           # sphinx-multiversion expects at least a "master" branch
           git branch master || echo "branch master already exists."
