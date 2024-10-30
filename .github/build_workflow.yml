@@ -1,0 +1,134 @@
+name: CI/CD Build Workflow
+
+on:
+  push:
+    branches:
+      - master
+
+  pull_request:
+    branches:
+      - master
+
+  workflow_dispatch:
+
+env:
+  CANCEL_OTHERS: false
+  PATHS_IGNORE: '["**/README.md", "**/docs/**"]'
+
+jobs:
+  build:
+    name: test mpas_tools - python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash -l {0}
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@master
+        with:
+          cancel_others: ${{ env.CANCEL_OTHERS }}
+          paths_ignore: ${{ env.PATHS_IGNORE }}
+
+      - if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
+        uses: actions/checkout@v4
+
+      - if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
+        name: Cache Conda
+        uses: actions/cache@v4
+        env:
+          # Increase this value to reset cache if conda-dev-spec.template has not changed in the workflow
+          CACHE_NUMBER: 0
+        with:
+          path: ~/conda_pkgs_dir
+          key:
+            ${{ runner.os }}-${{ matrix.python-version }}-conda-${{ env.CACHE_NUMBER }}-${{
+            hashFiles('dev-spec.txt,setup.py') }}
+
+      - if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
+        name: Set up Conda Environment
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: "mpas_tools_ci"
+          miniforge-version: latest
+          channels: conda-forge
+          channel-priority: strict
+          auto-update-conda: true
+          python-version: ${{ matrix.python-version }}
+
+      - if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
+        name: Install mpas_tools
+        run: |
+          conda create -n mpas_tools_dev --file dev-spec.txt \
+              python=${{ matrix.python-version }}
+          conda activate mpas_tools_dev
+          python -m pip install --no-deps --no-build-isolation -vv -e .
+
+      - if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
+        name: Run Tests
+        env:
+           CHECK_IMAGES: False
+        run: |
+          set -e
+          conda activate mpas_tools_dev
+          test -f "${PREFIX}/bin/ocean_smooth_topo_skip_land_ice"
+          test -f "${PREFIX}/bin/ocean_smooth_topo_before_init"
+          test -f "${PREFIX}/bin/ocean_smooth_topo_before_init_skip_land_ice"
+          planar_hex --nx=10 --ny=20 --dc=1000. --outFileName='periodic_mesh_10x20_1km.nc'
+          translate_planar_grid -f 'periodic_mesh_10x20_1km.nc' -x 1000. -y 2000.
+          translate_planar_grid -f 'periodic_mesh_10x20_1km.nc' -c
+          planar_hex --nx=20 --ny=40 --dc=1000. --outFileName='periodic_mesh_20x40_1km.nc'
+          translate_planar_grid -f 'periodic_mesh_10x20_1km.nc' -d 'periodic_mesh_20x40_1km.nc'
+          MpasMeshConverter.x mesh_tools/mesh_conversion_tools/test/mesh.QU.1920km.151026.nc mesh.nc
+          sort_mesh --mesh-file mesh.nc --sort-file sorted_mesh.nc
+          MpasCellCuller.x mesh.nc culled_mesh.nc -m mesh_tools/mesh_conversion_tools/test/land_mask_final.nc
+          MpasMaskCreator.x mesh.nc arctic_mask.nc -f mesh_tools/mesh_conversion_tools/test/Arctic_Ocean.geojson
+          planar_hex --nx=30 --ny=20 --dc=1000. --npx --npy --outFileName='nonperiodic_mesh_30x20_1km.nc'
+          MpasCellCuller.x nonperiodic_mesh_30x20_1km.nc culled_nonperiodic_mesh_30x20_1km.nc
+          python -m pytest conda_package/mpas_tools/tests
+          mark_horns_for_culling.py --help
+          set_lat_lon_fields_in_planar_grid.py --help
+          create_SCRIP_file_from_MPAS_mesh.py --help
+          create_SCRIP_file_from_planar_rectangular_grid.py --help
+          prepare_seaice_partitions --help
+          create_seaice_partitions --help
+          fix_regrid_output.exe
+          create_landice_grid_from_generic_MPAS_grid.py --help
+          define_cullMask.py --help
+          interpolate_to_mpasli_grid.py --help
+          mark_domain_boundaries_dirichlet.py --help
+          add_land_locked_cells_to_mask.py --help
+          widen_transect_edge_masks.py --help
+          add_critical_land_blockages_to_mask.py --help
+          moc_southern_boundary_extractor.py --help
+          ocean_add_depth --help
+          ocean_add_zmid --help
+          ocean_write_time_varying_zmid --help
+          paraview_vtk_field_extractor.py -f mesh_tools/mesh_conversion_tools/test/mesh.QU.1920km.151026.nc -v latCell,lonCell --ignore_time -o vtk_test
+          split_grids --help
+          merge_grids --help
+          inject_bathymetry mesh_tools/mesh_conversion_tools/test/mesh.QU.1920km.151026.nc
+          inject_preserve_floodplain --help
+          mpas_to_triangle --help
+          triangle_to_netcdf --help
+          jigsaw_to_netcdf --help
+          scrip_from_mpas --help
+          compute_mpas_region_masks --help
+          compute_mpas_transect_masks --help
+          compute_mpas_flood_fill_mask --help
+          compute_lon_lat_region_masks --help
+          compute_projection_region_masks --help
+          pip check
+
+      - if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
+        name: Build Sphinx Docs
+        run: |
+          conda activate mpas_tools_dev
+          # sphinx-multiversion expects at least a "master" branch
+          git branch master || echo "branch master already exists."
+          cd docs
+          sphinx-multiversion . _build/html
+
