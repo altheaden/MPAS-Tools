@@ -65,7 +65,7 @@ jobs:
           set -e
           cd conda_package/docs
           # gh-pages branch must already exist
-          git clone https://github.com/MPAS-Dev/MPAS-Tools.git --branch gh-pages --single-branch gh-pages
+          git clone https://github.com/altheaden/MPAS-Tools.git --branch gh-pages --single-branch gh-pages
 
           # Only replace docs in a directory with the destination branch name with latest changes. Docs for
           # releases should be untouched.
