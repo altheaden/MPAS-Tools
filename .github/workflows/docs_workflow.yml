@@ -65,7 +65,7 @@ jobs:
           cd conda_package/docs
           conda activate mpas_tools_dev
           # gh-pages branch must already exist
-          git clone https://github.com/MPAS-Dev/MPAS-Tools.git --branch gh-pages --single-branch gh-pages
+          git clone https://github.com/altheaden/MPAS-Tools.git --branch gh-pages --single-branch gh-pages
           # Make sure we're in the gh-pages directory.
           cd gh-pages
           # Create `.nojekyll` (if it doesn't already exist) for proper GH Pages configuration.
