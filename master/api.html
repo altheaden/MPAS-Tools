@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API reference &mdash; mpas_tools 0.36.0 documentation</title>
+  <title>API reference &mdash; mpas_tools master documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=5864e6e0"></script>
+      <script src="_static/documentation_options.js?v=30d551ce"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -54,7 +54,12 @@
 <li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="transects.html">Transects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vector.html">Vector Operations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Visualization</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpas_to_xdmf.html">MPAS to XDMF Converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="paraview_extractor.html">ParaView VTK Extractor</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Landice Tools</span></p>
 <ul>
@@ -83,6 +88,7 @@
 <li class="toctree-l1"><a class="reference internal" href="making_changes.html">Making Changes to mpas_tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing_changes.html">Testing Changes to mpas_tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_docs.html">Building the Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_docs.html#previewing-the-documentation">Previewing the Documentation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#mpas-mesh-tools">MPAS mesh tools</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#mesh-creation">Mesh creation</a><ul>
@@ -91,6 +97,7 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/mpas_tools.mesh.creation.build_mesh.build_spherical_mesh.html">mpas_tools.mesh.creation.build_mesh.build_spherical_mesh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/mpas_tools.mesh.creation.build_mesh.build_planar_mesh.html">mpas_tools.mesh.creation.build_mesh.build_planar_mesh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/mpas_tools.mesh.creation.jigsaw_driver.jigsaw_driver.html">mpas_tools.mesh.creation.jigsaw_driver.jigsaw_driver</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/mpas_tools.mesh.creation.jigsaw_driver.build_jigsaw.html">mpas_tools.mesh.creation.jigsaw_driver.build_jigsaw</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/mpas_tools.mesh.creation.jigsaw_to_netcdf.jigsaw_to_netcdf.html">mpas_tools.mesh.creation.jigsaw_to_netcdf.jigsaw_to_netcdf</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/mpas_tools.mesh.creation.mesh_definition_tools.html">mpas_tools.mesh.creation.mesh_definition_tools</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/mpas_tools.mesh.creation.mesh_definition_tools.mergeCellWidthVsLat.html">mpas_tools.mesh.creation.mesh_definition_tools.mergeCellWidthVsLat</a></li>
@@ -207,12 +214,13 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.ocean.inject_meshDensity.inject_spherical_meshDensity.html">mpas_tools.ocean.inject_meshDensity.inject_spherical_meshDensity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.ocean.inject_meshDensity.inject_planar_meshDensity.html">mpas_tools.ocean.inject_meshDensity.inject_planar_meshDensity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.ocean.inject_preserve_floodplain.inject_preserve_floodplain.html">mpas_tools.ocean.inject_preserve_floodplain.inject_preserve_floodplain</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.ocean.transects.find_transect_levels_and_weights.html">mpas_tools.ocean.transects.find_transect_levels_and_weights</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.ocean.transects.interp_mpas_to_transect_triangles.html">mpas_tools.ocean.transects.interp_mpas_to_transect_triangles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.ocean.transects.interp_mpas_to_transect_triangle_nodes.html">mpas_tools.ocean.transects.interp_mpas_to_transect_triangle_nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.ocean.transects.interp_transect_grid_to_transect_triangle_nodes.html">mpas_tools.ocean.transects.interp_transect_grid_to_transect_triangle_nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.ocean.transects.get_outline_segments.html">mpas_tools.ocean.transects.get_outline_segments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.ocean.viz.plot_ocean_transects.html">mpas_tools.ocean.viz.plot_ocean_transects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.ocean.viz.transect.compute_transect.html">mpas_tools.ocean.viz.transect.compute_transect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.ocean.viz.transect.find_transect_levels_and_weights.html">mpas_tools.ocean.viz.transect.find_transect_levels_and_weights</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.ocean.viz.transect.interp_mpas_to_transect_cells.html">mpas_tools.ocean.viz.transect.interp_mpas_to_transect_cells</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.ocean.viz.transect.interp_mpas_to_transect_nodes.html">mpas_tools.ocean.viz.transect.interp_mpas_to_transect_nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.ocean.viz.transect.interp_transect_grid_to_transect_nodes.html">mpas_tools.ocean.viz.transect.interp_transect_grid_to_transect_nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.ocean.viz.transect.plot_feature_transects.html">mpas_tools.ocean.viz.transect.plot_feature_transects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.ocean.viz.transect.plot_transect.html">mpas_tools.ocean.viz.transect.plot_transect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.ocean.viz.add_inset.html">mpas_tools.ocean.viz.add_inset</a></li>
 </ul>
 </li>
@@ -257,9 +265,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#visualization">Visualization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.viz.paraview_extractor.extract_vtk.html">mpas_tools.viz.paraview_extractor.extract_vtk</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.viz.mesh_to_triangles.mesh_to_triangles.html">mpas_tools.viz.mesh_to_triangles.mesh_to_triangles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.viz.transects.make_triangle_tree.html">mpas_tools.viz.transects.make_triangle_tree</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.viz.transects.find_transect_cells_and_weights.html">mpas_tools.viz.transects.find_transect_cells_and_weights</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.viz.transects.find_planar_transect_cells_and_weights.html">mpas_tools.viz.transects.find_planar_transect_cells_and_weights</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.viz.transect.find_planar_transect_cells_and_weights.html">mpas_tools.viz.transect.find_planar_transect_cells_and_weights</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.viz.transect.find_spherical_transect_cells_and_weights.html">mpas_tools.viz.transect.find_spherical_transect_cells_and_weights</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.viz.transect.interp_mpas_horiz_to_transect_nodes.html">mpas_tools.viz.transect.interp_mpas_horiz_to_transect_nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.viz.transect.make_triangle_tree.html">mpas_tools.viz.transect.make_triangle_tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.viz.transect.mesh_to_triangles.html">mpas_tools.viz.transect.mesh_to_triangles</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/mpas_tools.viz.colormaps.register_sci_viz_colormaps.html">mpas_tools.viz.colormaps.register_sci_viz_colormaps</a></li>
 </ul>
 </li>
@@ -274,10 +284,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Main Authors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html#contributors">Contributors</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Versions</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="versions.html">Versions</a></li>
 </ul>
 
         </div>
@@ -334,40 +340,43 @@ the documentation.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.jigsaw_driver.jigsaw_driver.html#mpas_tools.mesh.creation.jigsaw_driver.jigsaw_driver" title="mpas_tools.mesh.creation.jigsaw_driver.jigsaw_driver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jigsaw_driver.jigsaw_driver</span></code></a>(cellWidth, x, y)</p></td>
 <td><p>A function for building a jigsaw mesh</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.jigsaw_to_netcdf.jigsaw_to_netcdf.html#mpas_tools.mesh.creation.jigsaw_to_netcdf.jigsaw_to_netcdf" title="mpas_tools.mesh.creation.jigsaw_to_netcdf.jigsaw_to_netcdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jigsaw_to_netcdf.jigsaw_to_netcdf</span></code></a>(...[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.jigsaw_driver.build_jigsaw.html#mpas_tools.mesh.creation.jigsaw_driver.build_jigsaw" title="mpas_tools.mesh.creation.jigsaw_driver.build_jigsaw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jigsaw_driver.build_jigsaw</span></code></a>([logger, clone])</p></td>
+<td><p>Build the JIGSAW and JIGSAW-Python tools using conda-forge compilers</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.jigsaw_to_netcdf.jigsaw_to_netcdf.html#mpas_tools.mesh.creation.jigsaw_to_netcdf.jigsaw_to_netcdf" title="mpas_tools.mesh.creation.jigsaw_to_netcdf.jigsaw_to_netcdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jigsaw_to_netcdf.jigsaw_to_netcdf</span></code></a>(...[, ...])</p></td>
 <td><p>Converts mesh data defined in triangle format to NetCDF</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.mesh_definition_tools.html#module-mpas_tools.mesh.creation.mesh_definition_tools" title="mpas_tools.mesh.creation.mesh_definition_tools"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_definition_tools</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.mesh_definition_tools.html#module-mpas_tools.mesh.creation.mesh_definition_tools" title="mpas_tools.mesh.creation.mesh_definition_tools"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_definition_tools</span></code></a></p></td>
 <td><p>These functions are tools used to define the <code class="docutils literal notranslate"><span class="pre">cellWidth</span></code> variable on regular lat/lon grids.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.mesh_definition_tools.mergeCellWidthVsLat.html#mpas_tools.mesh.creation.mesh_definition_tools.mergeCellWidthVsLat" title="mpas_tools.mesh.creation.mesh_definition_tools.mergeCellWidthVsLat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_definition_tools.mergeCellWidthVsLat</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.mesh_definition_tools.mergeCellWidthVsLat.html#mpas_tools.mesh.creation.mesh_definition_tools.mergeCellWidthVsLat" title="mpas_tools.mesh.creation.mesh_definition_tools.mergeCellWidthVsLat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_definition_tools.mergeCellWidthVsLat</span></code></a>(...)</p></td>
 <td><p>Combine two cell width distributions using a <code class="docutils literal notranslate"><span class="pre">tanh</span></code> function.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.mesh_definition_tools.EC_CellWidthVsLat.html#mpas_tools.mesh.creation.mesh_definition_tools.EC_CellWidthVsLat" title="mpas_tools.mesh.creation.mesh_definition_tools.EC_CellWidthVsLat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_definition_tools.EC_CellWidthVsLat</span></code></a>(lat)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.mesh_definition_tools.EC_CellWidthVsLat.html#mpas_tools.mesh.creation.mesh_definition_tools.EC_CellWidthVsLat" title="mpas_tools.mesh.creation.mesh_definition_tools.EC_CellWidthVsLat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_definition_tools.EC_CellWidthVsLat</span></code></a>(lat)</p></td>
 <td><p>Create Eddy Closure spacing as a function of lat.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.mesh_definition_tools.RRS_CellWidthVsLat.html#mpas_tools.mesh.creation.mesh_definition_tools.RRS_CellWidthVsLat" title="mpas_tools.mesh.creation.mesh_definition_tools.RRS_CellWidthVsLat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_definition_tools.RRS_CellWidthVsLat</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.mesh_definition_tools.RRS_CellWidthVsLat.html#mpas_tools.mesh.creation.mesh_definition_tools.RRS_CellWidthVsLat" title="mpas_tools.mesh.creation.mesh_definition_tools.RRS_CellWidthVsLat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_definition_tools.RRS_CellWidthVsLat</span></code></a>(...)</p></td>
 <td><p>Create Rossby Radius Scaling as a function of lat.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.mesh_definition_tools.AtlanticPacificGrid.html#mpas_tools.mesh.creation.mesh_definition_tools.AtlanticPacificGrid" title="mpas_tools.mesh.creation.mesh_definition_tools.AtlanticPacificGrid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_definition_tools.AtlanticPacificGrid</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.mesh_definition_tools.AtlanticPacificGrid.html#mpas_tools.mesh.creation.mesh_definition_tools.AtlanticPacificGrid" title="mpas_tools.mesh.creation.mesh_definition_tools.AtlanticPacificGrid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_definition_tools.AtlanticPacificGrid</span></code></a>(...)</p></td>
 <td><p>Combine two cell width distributions using a <code class="docutils literal notranslate"><span class="pre">tanh</span></code> function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.mpas_to_triangle.mpas_to_triangle.html#mpas_tools.mesh.creation.mpas_to_triangle.mpas_to_triangle" title="mpas_tools.mesh.creation.mpas_to_triangle.mpas_to_triangle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mpas_to_triangle.mpas_to_triangle</span></code></a>(mpasfile, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.mpas_to_triangle.mpas_to_triangle.html#mpas_tools.mesh.creation.mpas_to_triangle.mpas_to_triangle" title="mpas_tools.mesh.creation.mpas_to_triangle.mpas_to_triangle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mpas_to_triangle.mpas_to_triangle</span></code></a>(mpasfile, ...)</p></td>
 <td><p>Script to convert from MPAS netCDF format to the Triangle format: <a class="reference external" href="https://www.cs.cmu.edu/~quake/triangle.node.html">https://www.cs.cmu.edu/~quake/triangle.node.html</a> <a class="reference external" href="https://www.cs.cmu.edu/~quake/triangle.ele.html">https://www.cs.cmu.edu/~quake/triangle.ele.html</a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.signed_distance.html#module-mpas_tools.mesh.creation.signed_distance" title="mpas_tools.mesh.creation.signed_distance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">signed_distance</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.signed_distance.html#module-mpas_tools.mesh.creation.signed_distance" title="mpas_tools.mesh.creation.signed_distance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">signed_distance</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.signed_distance.signed_distance_from_geojson.html#mpas_tools.mesh.creation.signed_distance.signed_distance_from_geojson" title="mpas_tools.mesh.creation.signed_distance.signed_distance_from_geojson"><code class="xref py py-obj docutils literal notranslate"><span class="pre">signed_distance.signed_distance_from_geojson</span></code></a>(fc, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.signed_distance.signed_distance_from_geojson.html#mpas_tools.mesh.creation.signed_distance.signed_distance_from_geojson" title="mpas_tools.mesh.creation.signed_distance.signed_distance_from_geojson"><code class="xref py py-obj docutils literal notranslate"><span class="pre">signed_distance.signed_distance_from_geojson</span></code></a>(fc, ...)</p></td>
 <td><p>Get the distance for each point on a lon/lat grid from the closest point on the boundary of the geojson regions.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.signed_distance.mask_from_geojson.html#mpas_tools.mesh.creation.signed_distance.mask_from_geojson" title="mpas_tools.mesh.creation.signed_distance.mask_from_geojson"><code class="xref py py-obj docutils literal notranslate"><span class="pre">signed_distance.mask_from_geojson</span></code></a>(fc, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.signed_distance.mask_from_geojson.html#mpas_tools.mesh.creation.signed_distance.mask_from_geojson" title="mpas_tools.mesh.creation.signed_distance.mask_from_geojson"><code class="xref py py-obj docutils literal notranslate"><span class="pre">signed_distance.mask_from_geojson</span></code></a>(fc, ...)</p></td>
 <td><p>Make a rasterized mask on a lon/lat grid from shapes (geojson multipolygon data).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.signed_distance.distance_from_geojson.html#mpas_tools.mesh.creation.signed_distance.distance_from_geojson" title="mpas_tools.mesh.creation.signed_distance.distance_from_geojson"><code class="xref py py-obj docutils literal notranslate"><span class="pre">signed_distance.distance_from_geojson</span></code></a>(fc, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.signed_distance.distance_from_geojson.html#mpas_tools.mesh.creation.signed_distance.distance_from_geojson" title="mpas_tools.mesh.creation.signed_distance.distance_from_geojson"><code class="xref py py-obj docutils literal notranslate"><span class="pre">signed_distance.distance_from_geojson</span></code></a>(fc, ...)</p></td>
 <td><p>Get the distance for each point on a lon/lat grid from the closest point on the boundary of the geojson regions.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.triangle_to_netcdf.triangle_to_netcdf.html#mpas_tools.mesh.creation.triangle_to_netcdf.triangle_to_netcdf" title="mpas_tools.mesh.creation.triangle_to_netcdf.triangle_to_netcdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">triangle_to_netcdf.triangle_to_netcdf</span></code></a>(node, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.mesh.creation.triangle_to_netcdf.triangle_to_netcdf.html#mpas_tools.mesh.creation.triangle_to_netcdf.triangle_to_netcdf" title="mpas_tools.mesh.creation.triangle_to_netcdf.triangle_to_netcdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">triangle_to_netcdf.triangle_to_netcdf</span></code></a>(node, ...)</p></td>
 <td><p>Converts mesh data defined in triangle format to NetCDF</p></td>
 </tr>
 </tbody>
@@ -701,29 +710,32 @@ the documentation.</p>
 </table>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.ocean.transects.find_transect_levels_and_weights.html#mpas_tools.ocean.transects.find_transect_levels_and_weights" title="mpas_tools.ocean.transects.find_transect_levels_and_weights"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_transect_levels_and_weights</span></code></a>(dsTransect, ...)</p></td>
-<td><p>Construct a vertical coordinate for a transect produced by <a class="reference internal" href="generated/mpas_tools.viz.transects.find_transect_cells_and_weights.html#mpas_tools.viz.transects.find_transect_cells_and_weights" title="mpas_tools.viz.transects.find_transect_cells_and_weights"><code class="xref py py-func docutils literal notranslate"><span class="pre">mpas_tools.viz.transects.find_transect_cells_and_weights()</span></code></a>, then break each resulting quadrilateral into 2 triangles that can later be visualized with functions like <code class="docutils literal notranslate"><span class="pre">tripcolor</span></code> and <code class="docutils literal notranslate"><span class="pre">tricontourf</span></code>.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.ocean.viz.transect.compute_transect.html#mpas_tools.ocean.viz.transect.compute_transect" title="mpas_tools.ocean.viz.transect.compute_transect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_transect</span></code></a>(x, y, ds_horiz_mesh, ...[, ...])</p></td>
+<td><p>build a sequence of quads showing the transect intersecting mpas cells.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.ocean.transects.interp_mpas_to_transect_triangles.html#mpas_tools.ocean.transects.interp_mpas_to_transect_triangles" title="mpas_tools.ocean.transects.interp_mpas_to_transect_triangles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interp_mpas_to_transect_triangles</span></code></a>(...)</p></td>
-<td><p>Interpolate a 3D (<code class="docutils literal notranslate"><span class="pre">nCells</span></code> by <code class="docutils literal notranslate"><span class="pre">nVertLevels</span></code>) MPAS-Ocean DataArray to transect nodes with constant values in each MPAS cell</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.ocean.viz.transect.find_transect_levels_and_weights.html#mpas_tools.ocean.viz.transect.find_transect_levels_and_weights" title="mpas_tools.ocean.viz.transect.find_transect_levels_and_weights"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_transect_levels_and_weights</span></code></a>(...[, ...])</p></td>
+<td><p>Construct a vertical coordinate for a transect produced by <code class="xref py py-func docutils literal notranslate"><span class="pre">mpas_tools.viz.transect.horiz.find_spherical_transect_cells_and_weights()</span></code> or <code class="xref py py-func docutils literal notranslate"><span class="pre">mpas_tools.viz.transect.horiz.find_planar_transect_cells_and_weights()</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.ocean.transects.interp_mpas_to_transect_triangle_nodes.html#mpas_tools.ocean.transects.interp_mpas_to_transect_triangle_nodes" title="mpas_tools.ocean.transects.interp_mpas_to_transect_triangle_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interp_mpas_to_transect_triangle_nodes</span></code></a>(...)</p></td>
-<td><p>Interpolate a 3D (<code class="docutils literal notranslate"><span class="pre">nCells</span></code> by <code class="docutils literal notranslate"><span class="pre">nVertLevels</span></code>) MPAS-Ocean DataArray to transect nodes, linearly interpolating fields between the closest neighboring cells</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.ocean.viz.transect.interp_mpas_to_transect_cells.html#mpas_tools.ocean.viz.transect.interp_mpas_to_transect_cells" title="mpas_tools.ocean.viz.transect.interp_mpas_to_transect_cells"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interp_mpas_to_transect_cells</span></code></a>(ds_transect, da)</p></td>
+<td><p>Interpolate an MPAS-Ocean DataArray with dimensions <code class="docutils literal notranslate"><span class="pre">nCells</span></code> by either <code class="docutils literal notranslate"><span class="pre">nVertLevels</span></code> (levels) or <code class="docutils literal notranslate"><span class="pre">nVertLevelsP1</span></code> (interfaces) to transect cells</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.ocean.transects.interp_transect_grid_to_transect_triangle_nodes.html#mpas_tools.ocean.transects.interp_transect_grid_to_transect_triangle_nodes" title="mpas_tools.ocean.transects.interp_transect_grid_to_transect_triangle_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interp_transect_grid_to_transect_triangle_nodes</span></code></a>(...)</p></td>
-<td><p>Interpolate a DataArray on the original transect grid to triangle nodes on the MPAS-Ocean transect.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.ocean.viz.transect.interp_mpas_to_transect_nodes.html#mpas_tools.ocean.viz.transect.interp_mpas_to_transect_nodes" title="mpas_tools.ocean.viz.transect.interp_mpas_to_transect_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interp_mpas_to_transect_nodes</span></code></a>(ds_transect, da)</p></td>
+<td><p>Interpolate an MPAS-Ocean DataArray with dimensions <code class="docutils literal notranslate"><span class="pre">nCells</span></code> by either <code class="docutils literal notranslate"><span class="pre">nVertLevels</span></code> or <code class="docutils literal notranslate"><span class="pre">nVertLevelsP1</span></code> to transect nodes, linearly interpolating fields between the closest neighboring cells</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.ocean.transects.get_outline_segments.html#mpas_tools.ocean.transects.get_outline_segments" title="mpas_tools.ocean.transects.get_outline_segments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_outline_segments</span></code></a>(dsTransectTriangles[, ...])</p></td>
-<td><p>Get a set of line segments that outline the given transect</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.ocean.viz.transect.interp_transect_grid_to_transect_nodes.html#mpas_tools.ocean.viz.transect.interp_transect_grid_to_transect_nodes" title="mpas_tools.ocean.viz.transect.interp_transect_grid_to_transect_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interp_transect_grid_to_transect_nodes</span></code></a>(...)</p></td>
+<td><p>Interpolate a DataArray on the original transect grid to nodes on the MPAS-Ocean transect.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.ocean.viz.transect.plot_feature_transects.html#mpas_tools.ocean.viz.transect.plot_feature_transects" title="mpas_tools.ocean.viz.transect.plot_feature_transects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_feature_transects</span></code></a>(fc, ds[, ds_mesh, ...])</p></td>
+<td><p>Plot images of the given variables on the given transects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.ocean.viz.transect.plot_transect.html#mpas_tools.ocean.viz.transect.plot_transect" title="mpas_tools.ocean.viz.transect.plot_transect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_transect</span></code></a>(ds_transect[, mpas_field, ...])</p></td>
+<td><p>plot a transect showing the field on the MPAS-Ocean mesh and save to a file</p></td>
 </tr>
 </tbody>
 </table>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.ocean.viz.plot_ocean_transects.html#mpas_tools.ocean.viz.plot_ocean_transects" title="mpas_tools.ocean.viz.plot_ocean_transects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_ocean_transects</span></code></a>(fc, ds[, ds_mesh, ...])</p></td>
-<td><p>Plot images of the given variables on the given transects.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.ocean.viz.add_inset.html#mpas_tools.ocean.viz.add_inset" title="mpas_tools.ocean.viz.add_inset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_inset</span></code></a>(fig, fc[, latlonbuffer, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.ocean.viz.add_inset.html#mpas_tools.ocean.viz.add_inset" title="mpas_tools.ocean.viz.add_inset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_inset</span></code></a>(fig, fc[, latlonbuffer, ...])</p></td>
 <td><p>Plots an inset map showing the location of a transect or polygon.</p></td>
 </tr>
 </tbody>
@@ -869,14 +881,20 @@ the documentation.</p>
 </table>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.viz.transects.make_triangle_tree.html#mpas_tools.viz.transects.make_triangle_tree" title="mpas_tools.viz.transects.make_triangle_tree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_triangle_tree</span></code></a>(dsTris)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.viz.transect.find_planar_transect_cells_and_weights.html#mpas_tools.viz.transect.find_planar_transect_cells_and_weights" title="mpas_tools.viz.transect.find_planar_transect_cells_and_weights"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_planar_transect_cells_and_weights</span></code></a>(...)</p></td>
+<td><p>Find &quot;nodes&quot; where the transect intersects the edges of the triangles that make up MPAS cells.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.viz.transect.find_spherical_transect_cells_and_weights.html#mpas_tools.viz.transect.find_spherical_transect_cells_and_weights" title="mpas_tools.viz.transect.find_spherical_transect_cells_and_weights"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_spherical_transect_cells_and_weights</span></code></a>(...)</p></td>
+<td><p>Find &quot;nodes&quot; where the transect intersects the edges of the triangles that make up MPAS cells.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.viz.transect.interp_mpas_horiz_to_transect_nodes.html#mpas_tools.viz.transect.interp_mpas_horiz_to_transect_nodes" title="mpas_tools.viz.transect.interp_mpas_horiz_to_transect_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interp_mpas_horiz_to_transect_nodes</span></code></a>(...)</p></td>
+<td><p>Interpolate a 2D (<code class="docutils literal notranslate"><span class="pre">nCells</span></code>) MPAS DataArray to transect nodes, linearly interpolating fields between the closest neighboring cells</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.viz.transect.make_triangle_tree.html#mpas_tools.viz.transect.make_triangle_tree" title="mpas_tools.viz.transect.make_triangle_tree"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_triangle_tree</span></code></a>(ds_tris)</p></td>
 <td><p>Make a KD-Tree for finding triangle edges that are near enough to transect segments that they might intersect</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/mpas_tools.viz.transects.find_transect_cells_and_weights.html#mpas_tools.viz.transects.find_transect_cells_and_weights" title="mpas_tools.viz.transects.find_transect_cells_and_weights"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_transect_cells_and_weights</span></code></a>(lonTransect, ...)</p></td>
-<td><p>Find &quot;nodes&quot; where the transect intersects the edges of the triangles that make up MPAS cells.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.viz.transects.find_planar_transect_cells_and_weights.html#mpas_tools.viz.transects.find_planar_transect_cells_and_weights" title="mpas_tools.viz.transects.find_planar_transect_cells_and_weights"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_planar_transect_cells_and_weights</span></code></a>(...)</p></td>
-<td><p>Find &quot;nodes&quot; where the transect intersects the edges of the triangles that make up MPAS cells.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/mpas_tools.viz.transect.mesh_to_triangles.html#mpas_tools.viz.transect.mesh_to_triangles" title="mpas_tools.viz.transect.mesh_to_triangles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh_to_triangles</span></code></a>(ds_mesh)</p></td>
+<td><p>Construct a dataset in which each MPAS cell is divided into the triangles connecting pairs of adjacent vertices to cell centers.</p></td>
 </tr>
 </tbody>
 </table>
@@ -924,46 +942,31 @@ the documentation.</p>
       </div>
     </section>
   </div>
-  
-<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    <span class="fa fa-book"> Other Versions</span>
-    v: master
-    <span class="fa fa-caret-down"></span>
-  </span>
-  <div class="rst-other-versions">
-    <dl>
-      <dt>Tags</dt>
-      <dd><a href="../0.0.2/api.html">0.0.2</a></dd>
-      <dd><a href="../0.0.3/api.html">0.0.3</a></dd>
-      <dd><a href="../0.0.4/api.html">0.0.4</a></dd>
-      <dd><a href="../0.0.5/api.html">0.0.5</a></dd>
-      <dd><a href="../0.0.6/api.html">0.0.6</a></dd>
-      <dd><a href="../0.0.7/api.html">0.0.7</a></dd>
-      <dd><a href="../0.0.8/api.html">0.0.8</a></dd>
-      <dd><a href="../0.0.9/api.html">0.0.9</a></dd>
-      <dd><a href="../0.1.0/api.html">0.1.0</a></dd>
-      <dd><a href="../0.2.0/api.html">0.2.0</a></dd>
-      <dd><a href="../0.2.1/api.html">0.2.1</a></dd>
-      <dd><a href="../0.3.0/api.html">0.3.0</a></dd>
-      <dd><a href="../0.4.0/api.html">0.4.0</a></dd>
-      <dd><a href="../0.5.0/api.html">0.5.0</a></dd>
-      <dd><a href="../0.5.1/api.html">0.5.1</a></dd>
-      <dd><a href="../0.6.0/api.html">0.6.0</a></dd>
-      <dd><a href="../0.7.0/api.html">0.7.0</a></dd>
-      <dd><a href="../0.8.0/api.html">0.8.0</a></dd>
-    </dl>
-    <dl>
-      <dt>Branches</dt>
-      <dd><a href="api.html">master</a></dd>
-    </dl>
-  </div>
-</div>
-<script>
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+   
+
+  <!-- Meta tags for JS to use -->
+  <meta name="doc-version" content="master">
+  <meta name="doc-site-root" content="./">
+
+  <!-- Create version switcher container -->
+  <script>
+    const sidebar = document.querySelector('.wy-side-nav-search');
+    if (sidebar) {
+      const versionDiv = document.createElement('div');
+      versionDiv.id = 'version-switcher';
+      versionDiv.style.marginTop = '1em';
+      sidebar.appendChild(versionDiv);
+    }
+  </script>
+
+  <!-- Load version-switcher.js using the correct relative path -->
+  <script src="../shared/version-switcher.js"></script>
+
 
 </body>
 </html>

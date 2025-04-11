@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mesh Creation &mdash; mpas_tools 0.36.0 documentation</title>
+  <title>Mesh Creation &mdash; mpas_tools master documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=5864e6e0"></script>
+      <script src="_static/documentation_options.js?v=30d551ce"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -71,7 +71,12 @@
 <li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="transects.html">Transects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vector.html">Vector Operations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Visualization</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpas_to_xdmf.html">MPAS to XDMF Converter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="paraview_extractor.html">ParaView VTK Extractor</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Landice Tools</span></p>
 <ul>
@@ -100,16 +105,13 @@
 <li class="toctree-l1"><a class="reference internal" href="making_changes.html">Making Changes to mpas_tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="testing_changes.html">Testing Changes to mpas_tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_docs.html">Building the Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_docs.html#previewing-the-documentation">Previewing the Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Authors</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Main Authors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html#contributors">Contributors</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Versions</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="versions.html">Versions</a></li>
 </ul>
 
         </div>
@@ -268,6 +270,56 @@ and <code class="docutils literal notranslate"><span class="pre">mesh_triangles.
 function <a class="reference internal" href="generated/mpas_tools.mesh.creation.jigsaw_driver.jigsaw_driver.html#mpas_tools.mesh.creation.jigsaw_driver.jigsaw_driver" title="mpas_tools.mesh.creation.jigsaw_driver.jigsaw_driver"><code class="xref py py-func docutils literal notranslate"><span class="pre">mpas_tools.mesh.creation.jigsaw_driver.jigsaw_driver()</span></code></a>.  This
 function is used to setup data structures and then build a JIGSAW mesh using
 <code class="docutils literal notranslate"><span class="pre">jigsawpy</span></code>.</p>
+<p><strong>Note:</strong> The <code class="docutils literal notranslate"><span class="pre">jigsaw</span></code> and <code class="docutils literal notranslate"><span class="pre">jigsawpy</span></code> packages are no longer being updated
+on conda-forge and must be installed from source into your conda environment.
+This happens automatically if you use <code class="docutils literal notranslate"><span class="pre">compass</span></code> or <code class="docutils literal notranslate"><span class="pre">polaris</span></code> but needs
+to be done manually otherwise.</p>
+<p>There is a <cite>build_jigsaw</cite> command and the equvalent function
+<a class="reference internal" href="generated/mpas_tools.mesh.creation.jigsaw_driver.build_jigsaw.html#mpas_tools.mesh.creation.jigsaw_driver.build_jigsaw" title="mpas_tools.mesh.creation.jigsaw_driver.build_jigsaw"><code class="xref py py-func docutils literal notranslate"><span class="pre">mpas_tools.mesh.creation.jigsaw_driver.build_jigsaw()</span></code></a> that can be
+used to build JIGSAW and JIGSAW-Python from source and install them in the
+current conda envrionment.</p>
+<p>Alternatively, here are the instructions:</p>
+<ol class="arabic">
+<li><p>Clone the jigsaw-python repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/dengwirda/jigsaw-python.git
+<span class="nb">cd</span><span class="w"> </span>jigsaw-python
+</pre></div>
+</div>
+</li>
+<li><p>Install the required build tools in your conda environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>cxx-compiler<span class="w"> </span>cmake<span class="w"> </span>make<span class="w"> </span>libnetcdf<span class="w"> </span>setuptools<span class="w"> </span>numpy<span class="w"> </span>scipy
+</pre></div>
+</div>
+<p>If you are on Linux, also install:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>sysroot_linux-64<span class="o">=</span><span class="m">2</span>.17
+</pre></div>
+</div>
+<p>If you are on macOS, also install:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>macosx_deployment_target_osx-64<span class="o">=</span><span class="m">10</span>.13
+</pre></div>
+</div>
+</li>
+<li><p>Build JIGSAW:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>external/jigsaw
+rm<span class="w"> </span>-rf<span class="w"> </span>tmp
+mkdir<span class="w"> </span>tmp
+<span class="nb">cd</span><span class="w"> </span>tmp
+cmake<span class="w"> </span>..<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>-DNETCDF_LIBRARY<span class="o">=</span><span class="nv">$CONDA_PREFIX</span>/lib/libnetcdf.so
+cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </span>--config<span class="w"> </span>Release<span class="w"> </span>--target<span class="w"> </span>install<span class="w"> </span>--parallel<span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install JIGSAW-Python:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../../../
+rm<span class="w"> </span>-rf<span class="w"> </span>jigsawpy/_bin<span class="w"> </span>jigsawpy/_lib
+cp<span class="w"> </span>-r<span class="w"> </span>external/jigsaw/bin/<span class="w"> </span>jigsawpy/_bin
+cp<span class="w"> </span>-r<span class="w"> </span>external/jigsaw/lib/<span class="w"> </span>jigsawpy/_lib
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-deps<span class="w"> </span>--no-build-isolation<span class="w"> </span>-e<span class="w"> </span>.
+cp<span class="w"> </span>jigsawpy/_bin/*<span class="w"> </span><span class="nv">$CONDA_PREFIX</span>/bin
+</pre></div>
+</div>
+</li>
+</ol>
 </section>
 </section>
 <section id="mesh-definition-tools">
@@ -581,46 +633,31 @@ and 0 degrees latitude and the resolution is ~2 degrees elsewhere.  The shape
       </div>
     </section>
   </div>
-  
-<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    <span class="fa fa-book"> Other Versions</span>
-    v: master
-    <span class="fa fa-caret-down"></span>
-  </span>
-  <div class="rst-other-versions">
-    <dl>
-      <dt>Tags</dt>
-      <dd><a href="../0.0.2/index.html">0.0.2</a></dd>
-      <dd><a href="../0.0.3/index.html">0.0.3</a></dd>
-      <dd><a href="../0.0.4/index.html">0.0.4</a></dd>
-      <dd><a href="../0.0.5/index.html">0.0.5</a></dd>
-      <dd><a href="../0.0.6/index.html">0.0.6</a></dd>
-      <dd><a href="../0.0.7/index.html">0.0.7</a></dd>
-      <dd><a href="../0.0.8/index.html">0.0.8</a></dd>
-      <dd><a href="../0.0.9/index.html">0.0.9</a></dd>
-      <dd><a href="../0.1.0/mesh_creation.html">0.1.0</a></dd>
-      <dd><a href="../0.2.0/mesh_creation.html">0.2.0</a></dd>
-      <dd><a href="../0.2.1/mesh_creation.html">0.2.1</a></dd>
-      <dd><a href="../0.3.0/mesh_creation.html">0.3.0</a></dd>
-      <dd><a href="../0.4.0/mesh_creation.html">0.4.0</a></dd>
-      <dd><a href="../0.5.0/mesh_creation.html">0.5.0</a></dd>
-      <dd><a href="../0.5.1/mesh_creation.html">0.5.1</a></dd>
-      <dd><a href="../0.6.0/mesh_creation.html">0.6.0</a></dd>
-      <dd><a href="../0.7.0/mesh_creation.html">0.7.0</a></dd>
-      <dd><a href="../0.8.0/mesh_creation.html">0.8.0</a></dd>
-    </dl>
-    <dl>
-      <dt>Branches</dt>
-      <dd><a href="mesh_creation.html">master</a></dd>
-    </dl>
-  </div>
-</div>
-<script>
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+   
+
+  <!-- Meta tags for JS to use -->
+  <meta name="doc-version" content="master">
+  <meta name="doc-site-root" content="./">
+
+  <!-- Create version switcher container -->
+  <script>
+    const sidebar = document.querySelector('.wy-side-nav-search');
+    if (sidebar) {
+      const versionDiv = document.createElement('div');
+      versionDiv.id = 'version-switcher';
+      versionDiv.style.marginTop = '1em';
+      sidebar.appendChild(versionDiv);
+    }
+  </script>
+
+  <!-- Load version-switcher.js using the correct relative path -->
+  <script src="../shared/version-switcher.js"></script>
+
 
 </body>
 </html>
