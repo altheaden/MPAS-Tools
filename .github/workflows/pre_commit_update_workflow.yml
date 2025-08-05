@@ -15,7 +15,7 @@ on:
 env:
   UP_TO_DATE: false
   PYTHON_VERSION: "3.13"
-  REVIEWERS: "altheaden,xylar,andrewdnolan"
+  REVIEWERS: "altheaden"
 
 jobs:
   auto-update:
@@ -47,7 +47,7 @@ jobs:
         run: |
           eval "$(micromamba shell hook --shell bash)"
           micromamba activate pre_commit_dev
-          git clone https://github.com/MPAS-Dev/MPAS-Tools.git update-pre-commit-deps
+          git clone https://github.com/altheaden/MPAS-Tools.git update-pre-commit-deps
           cd update-pre-commit-deps
           # Configure git using GitHub Actions credentials.
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
